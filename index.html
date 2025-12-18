@@ -70,6 +70,31 @@ const map = L.map('map').setView([-7.7956, 110.3695], 13);
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   maxZoom: 18
 }).addTo(map);
+  // ================== LOAD SERVICE LAPTOP (GEOJSON) ==================
+fetch("service_laptop_jogja.geojson")
+  .then(res => res.json())
+  .then(data => {
+    L.geoJSON(data, {
+      onEachFeature: (feature, layer) => {
+        const p = feature.properties;
+        const lat = feature.geometry.coordinates[1];
+        const lng = feature.geometry.coordinates[0];
+
+        layer.bindPopup(`
+          <b>${p.nama}</b><br>
+          Jenis: ${p.jenis_service}<br>
+          Layanan: ${p.layanan}<br>
+          Rating: ⭐ ${p.rating}<br>
+          <small>${p.keterangan}</small><br><br>
+          <button onclick="routeToGeoJSON(${lat}, ${lng}, '${p.nama}')">
+            Rute ke sini
+          </button>
+        `);
+      }
+    }).addTo(map);
+  })
+  .catch(err => console.error("GeoJSON error:", err));
+
 // ================== GLOBAL VAR ==================
 let userLatLng = null;
 let userMarker = null;
@@ -103,21 +128,7 @@ if ("geolocation" in navigator) {
 }
 
 // ================== SERVICE MARKER ==================
-services.forEach(service => {
-  const marker = L.marker([service.lat, service.lng]).addTo(map);
 
-  marker.bindPopup(
-    `<b>${service.name}</b><br>
-     ${service.type}<br>
-     <button id="route-${service.name}">Rute ke sini</button>`
-  );
-
-  marker.on("popupopen", () => {
-    document
-      .getElementById(`route-${service.name}`)
-      .addEventListener("click", () => routeTo(service));
-  });
-});
 
 // ================== ROUTING FUNCTION ==================
 function routeTo(service){
@@ -156,21 +167,6 @@ function routeToGeoJSON(lat, lng, nama) {
 }
 
 // ================== NEAREST SERVICE ==================
-btnNearest.addEventListener("click", () => {
-  let nearest = null;
-  let minDist = Infinity;
-
-  services.forEach(s => {
-    const d = userLatLng.distanceTo([s.lat, s.lng]);
-    if(d < minDist){
-      minDist = d;
-      nearest = s;
-    }
-  });
-
-  if(nearest) routeTo(nearest);
-});
-
 // ================== RESET ==================
 document.getElementById("btnReset").addEventListener("click", () => {
   if(routingControl) map.removeControl(routingControl);
