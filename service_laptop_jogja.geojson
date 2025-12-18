@@ -1,0 +1,198 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [110.3673, -7.7828] },
+      "properties": {
+        "nama": "PEMMZ Yogya",
+        "jenis_service": "Laptop Gaming & Rakit PC",
+        "layanan": "Upgrade SSD, VGA, Cooling, Install OS",
+        "rating": "4.9",
+        "keterangan": "Spesialis laptop gaming dan PC rakitan"
+      }
+    },
+
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [110.3649, -7.7839] },
+      "properties": {
+        "nama": "Salon Laptop Jogja (HERRO)",
+        "jenis_service": "Hardware & Software",
+        "layanan": "Keyboard, Layar, Baterai, Install Ulang",
+        "rating": "4.8",
+        "keterangan": "Servis cepat dan umum"
+      }
+    },
+
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [110.3691, -7.7817] },
+      "properties": {
+        "nama": "SIMETRIS LAPTOP",
+        "jenis_service": "Jual Beli & Service Laptop",
+        "layanan": "Servis, Upgrade, Laptop Bekas",
+        "rating": "4.7",
+        "keterangan": "Toko dan servis laptop terpadu"
+      }
+    },
+
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [110.3702, -7.7959] },
+      "properties": {
+        "nama": "ISOTRONIK COMP",
+        "jenis_service": "Hardware & Software",
+        "layanan": "Install OS, SSD, Perbaikan Mainboard",
+        "rating": "4.8",
+        "keterangan": "Teknisi berpengalaman"
+      }
+    },
+
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [110.3741, -7.7971] },
+      "properties": {
+        "nama": "Medium Laptop Jogja",
+        "jenis_service": "Jual-Beli & Service Laptop",
+        "layanan": "Servis umum, upgrade, laptop second",
+        "rating": "4.9",
+        "keterangan": "Rating tinggi di Google Maps"
+      }
+    },
+
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [110.3687, -7.7925] },
+      "properties": {
+        "nama": "Read-1 Comp",
+        "jenis_service": "Service Laptop & Komputer",
+        "layanan": "Hardware, Software, Install Ulang",
+        "rating": "4.9",
+        "keterangan": "Servis cepat dan komunikatif"
+      }
+    },
+
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [110.3618, -7.7896] },
+      "properties": {
+        "nama": "Planet Laptop & Computer",
+        "jenis_service": "Service & Jual Beli Laptop",
+        "layanan": "Sparepart, Upgrade, Servis Umum",
+        "rating": "4.8",
+        "keterangan": "Toko komputer lengkap"
+      }
+    },
+
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [110.3615, -7.8033] },
+      "properties": {
+        "nama": "Lasercom Veteran",
+        "jenis_service": "Service HP & Laptop",
+        "layanan": "HP, Laptop, Install OS",
+        "rating": "4.7",
+        "keterangan": "Lokasi area Veteran"
+      }
+    },
+
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [110.3725, -7.7908] },
+      "properties": {
+        "nama": "LAPTOPGUARD 2",
+        "jenis_service": "Service & Jual Beli Laptop",
+        "layanan": "Keyboard, SSD, Install OS",
+        "rating": "4.8",
+        "keterangan": "Cabang ke-2 Laptopguard"
+      }
+    },
+
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [110.3654, -7.8057] },
+      "properties": {
+        "nama": "Rumah Service Laptop",
+        "jenis_service": "Service Laptop",
+        "layanan": "Servis panggilan & toko",
+        "rating": "4.7",
+        "keterangan": "Melayani servis rumahan"
+      }
+    },
+
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [110.3668, -7.7891] },
+      "properties": {
+        "nama": "Optimus Computindo",
+        "jenis_service": "Keyboard, Layar, SSD",
+        "layanan": "Upgrade & servis komponen",
+        "rating": "4.8",
+        "keterangan": "Spesialis upgrade laptop"
+      }
+    },
+
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [110.3624, -7.7876] },
+      "properties": {
+        "nama": "SobaComp",
+        "jenis_service": "Service Laptop Panggilan",
+        "layanan": "Engsel, Install Windows",
+        "rating": "4.7",
+        "keterangan": "Servis panggilan Jogja"
+      }
+    },
+
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [110.3641, -7.7849] },
+      "properties": {
+        "nama": "Brotherhood Tech",
+        "jenis_service": "Hardware & Software",
+        "layanan": "Engsel, Keyboard, Install OS",
+        "rating": "4.8",
+        "keterangan": "Populer area UGM"
+      }
+    },
+
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [110.3698, -7.7922] },
+      "properties": {
+        "nama": "ELS Computer Yogyakarta",
+        "jenis_service": "Service Center Laptop",
+        "layanan": "Garansi, Upgrade, Servis Resmi",
+        "rating": "4.8",
+        "keterangan": "Jaringan nasional ELS"
+      }
+    },
+
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [110.3609, -7.8021] },
+      "properties": {
+        "nama": "NULDELI JOGJA",
+        "jenis_service": "Servis & Sparepart Laptop",
+        "layanan": "Sparepart, Perbaikan Hardware",
+        "rating": "4.7",
+        "keterangan": "Sparepart lengkap"
+      }
+    },
+
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [110.3679, -7.7934] },
+      "properties": {
+        "nama": "Ndandani Tekno",
+        "jenis_service": "Service Windows & Macbook",
+        "layanan": "Install OS, Software, Maintenance",
+        "rating": "4.8",
+        "keterangan": "Spesialis software"
+      }
+    }
+
+  ]
+}
