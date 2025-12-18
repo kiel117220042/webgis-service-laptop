@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<title>WebGIS Service Laptop Terdekat - Yogyakarta</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Leaflet -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<!-- Leaflet Routing Machine -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css">
+<script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+
+<style>
+html, body {
+  margin: 0;
+  padding: 0;
+}
+#map {
+  height: 100vh;
+}
+
+#panel {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 260px;
+  background: #ffffff;
+  padding: 12px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  z-index: 1000;
+}
+
+#panel h3 {
+  margin: 0 0 8px 0;
+  font-size: 16px;
+}
+
+#panel button {
+  width: 100%;
+  margin-top: 6px;
+  padding: 6px;
+  border: none;
+  border-radius: 4px;
+  background: #1976d2;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+#panel button:disabled {
+  background: #aaaaaa;
+  cursor: not-allowed;
+}
+</style>
+</head>
+
+<body>
+
+<div id="map"></div>
+
+<div id="panel">
+  <h3>Service Laptop Jogja</h3>
+  <p id="status">Menunggu izin lokasi...</p>
+  <p id="info"></p>
+  <button id="btnNearest" disabled>Cari Service Terdekat</button>
+  <button id="btnReset">Reset</button>
+</div>
+
+<script>
+// ================== INIT MAP ==================
+const map = L.map('map').setView([-7.7956, 110.3695], 13);
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  maxZoom: 18
+}).addTo(map);
+
+// ================== DATA SERVICE ==================
+const services = [
+  { name: "Laptop Jaya", lat: -7.7829, lng: 110.3671, type: "Hardware & Software" },
+  { name: "Jogja Laptop Care", lat: -7.7956, lng: 110.3695, type: "Hardware" },
+  { name: "Techno Service Jogja", lat: -7.7758, lng: 110.3743, type: "Software" }
+];
+
+// ================== GLOBAL VAR ==================
+let userLatLng = null;
+let userMarker = null;
+let routingControl = null;
+
+const statusEl = document.getElementById("status");
+const infoEl = document.getElementById("info");
+const btnNearest = document.getElementById("btnNearest");
+
+// ================== GPS ==================
+if ("geolocation" in navigator) {
+  navigator.geolocation.getCurrentPosition(
+    position => {
+      userLatLng = L.latLng(
+        position.coords.latitude,
+        position.coords.longitude
+      );
+
+      userMarker = L.marker(userLatLng)
+        .addTo(map)
+        .bindPopup("Posisi Saya")
+        .openPopup();
+
+      map.setView(userLatLng, 14);
+      statusEl.innerText = "Pilih service laptop atau cari terdekat";
+      btnNearest.disabled = false;
+    },
+    () => {
+      statusEl.innerText = "Izin lokasi ditolak oleh pengguna";
+    }
+  );
+} else {
+  statusEl.innerText = "Browser tidak mendukung GPS";
+}
+
+// ================== SERVICE MARKER ==================
+services.forEach(service => {
+  const marker = L.marker([service.lat, service.lng]).addTo(map);
+
+  marker.bindPopup(
+    `<b>${service.name}</b><br>
+     ${service.type}<br>
+     <button id="route-${service.name}">Rute ke sini</button>`
+  );
+
+  marker.on("popupopen", () => {
+    document
+      .getElementById(`route-${service.name}`)
+      .addEventListener("click", () => routeTo(service));
+  });
+});
+
+// ================== ROUTING FUNCTION ==================
+function routeTo(service) {
+  if (!userLatLng) {
+    alert("Lokasi pengguna belum tersedia");
+    return;
+  }
+
+  if (routingControl) {
+    map.removeControl(routingControl);
+  }
+
+  routingControl = L.Routing.control({
+    waypoints: [
+      userLatLng,
+      L.latLng(service.lat, service.lng)
+    ],
+    router: L.Routing.osrmv1({ profile: "car" }),
+    draggableWaypoints: false,
+    addWaypoints: false,
+    show: false
+  })
+  .on("routesfound", e => {
+    const r = e.routes[0].summary;
+    infoEl.innerHTML =
+      `<b>${service.name}</b><br>
+       Jarak: ${(r.totalDistance / 1000).toFixed(2)} km<br>
+       Waktu: ${(r.totalTime / 60).toFixed(0)} menit`;
+  })
+  .addTo(map);
+}
+
+// ================== NEAREST SERVICE ==================
+btnNearest.addEventListener("click", () => {
+  let nearest = null;
+  let minDist = Infinity;
+
+  services.forEach(service => {
+    const dist = userLatLng.distanceTo([service.lat, service.lng]);
+    if (dist < minDist) {
+      minDist = dist;
+      nearest = service;
+    }
+  });
+
+  if (nearest) {
+    routeTo(nearest);
+  }
+});
+
+// ================== RESET ==================
+document.getElementById("btnReset").addEventListener("click", () => {
+  if (routingControl) {
+    map.removeControl(routingControl);
+  }
+  infoEl.innerHTML = "";
+});
+</script>
+
+</body>
+</html>
