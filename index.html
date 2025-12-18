@@ -70,14 +70,6 @@ const map = L.map('map').setView([-7.7956, 110.3695], 13);
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   maxZoom: 18
 }).addTo(map);
-
-// ================== DATA SERVICE ==================
-const services = [
-  { name:"Laptop Jaya", lat:-7.7829, lng:110.3671, type:"Hardware & Software" },
-  { name:"Jogja Laptop Care", lat:-7.7956, lng:110.3695, type:"Hardware" },
-  { name:"Techno Service Jogja", lat:-7.7758, lng:110.3743, type:"Software" }
-];
-
 // ================== GLOBAL VAR ==================
 let userLatLng = null;
 let userMarker = null;
@@ -154,6 +146,13 @@ function routeTo(service){
        Waktu: ${(r.totalTime/60).toFixed(0)} menit`;
   })
   .addTo(map);
+}
+function routeToGeoJSON(lat, lng, nama) {
+  routeTo({
+    name: nama,
+    lat: lat,
+    lng: lng
+  });
 }
 
 // ================== NEAREST SERVICE ==================
