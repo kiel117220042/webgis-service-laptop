@@ -168,6 +168,13 @@ function routeTo(service) {
   })
   .addTo(map);
 }
+function routeToGeoJSON(lat, lng, nama) {
+  routeTo({
+    name: nama,
+    lat: lat,
+    lng: lng
+  });
+}
 
 // ================== NEAREST SERVICE ==================
 btnNearest.addEventListener("click", () => {
